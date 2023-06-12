@@ -1,0 +1,20 @@
+.couple-days-wrapper {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .couple-days-wrapper.style2 .medium,
+  .couple-days-wrapper.style3 .medium,
+  .couple-days-wrapper.style4 .medium,
+  .couple-days-wrapper.style5 .medium {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+  }
+  
+  .couple-days-wrapper.style2 .medium.bright,
+  .couple-days-wrapper.style3 .medium.bright,
+  .couple-days-wrapper.style4 .medium.bright,
+  .couple-days-wrapper.style5 .medium.bright {
+    opacity: 1;
+  }
+  
