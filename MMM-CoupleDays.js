@@ -57,7 +57,11 @@ Module.register("MMM-CoupleDays", {
   },
 
   getHeader: function () {
+    if (this.config.name2 === "") {
+      return this.config.name1;
+    } else {
     return this.config.name1 + " " + this.translate("and") + " " + this.config.name2;
+    }
   },
 
   getDuration: function (unit) {
