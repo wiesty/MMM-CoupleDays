@@ -22,7 +22,7 @@ MagicMirror² Module that displays the number of days, weeks, months, and years 
 	position: "bottom_right",
 	config: {
 		name1: "Partner 1",
-		name2: "Partner 2",
+		name2: "Partner 2", // If name2 is "", it only shows the first name (for birthday trackers for exmaple) 
 		date: "2023-01-01", // year-month-day
 		transitionDuration: 5000, // in ms
 		language: "en" // de for german, en for englisch
