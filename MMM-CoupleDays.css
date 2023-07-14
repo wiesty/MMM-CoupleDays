@@ -1,20 +1,18 @@
-.couple-days-wrapper {
+.couple-days-content {
+  font-weight: normal;
+  animation-name: fade;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fade {
+  0% {
     opacity: 1;
-    transition: opacity 1s ease-in-out;
   }
-  
-  .couple-days-wrapper.style2 .medium,
-  .couple-days-wrapper.style3 .medium,
-  .couple-days-wrapper.style4 .medium,
-  .couple-days-wrapper.style5 .medium {
-    transition: opacity 1s ease-in-out;
+  50% {
     opacity: 0;
   }
-  
-  .couple-days-wrapper.style2 .medium.bright,
-  .couple-days-wrapper.style3 .medium.bright,
-  .couple-days-wrapper.style4 .medium.bright,
-  .couple-days-wrapper.style5 .medium.bright {
+  100% {
     opacity: 1;
   }
-  
+}

@@ -1,120 +1,128 @@
 Module.register("MMM-CoupleDays", {
-    defaults: {
-      name1: "Partner 1",
-      name2: "Partner 2",
-      date: "2023-01-01",
-      transitionDuration: 7500
-    },
-  
-    start: function () {
-      var startDate = new Date(this.config.date);
-      var currentDate = new Date();
-      var timeDiff = Math.abs(currentDate.getTime() - startDate.getTime());
-      this.numOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      this.numOfMonths = Math.ceil(timeDiff / (1000 * 3600 * 24 * 30.436875));
-      this.numOfYears = Math.floor(timeDiff / (1000 * 3600 * 24 * 365.25));
-  
-      this.currentStyle = 1;
-      this.nextStyle = 2;
-      this.transitionInterval = null;
-      var self = this;
-      setInterval(function () {
-        self.updateDom();
-      }, 1000);
+  defaults: {
+    name1: "Partner 1",
+    name2: "Partner 2",
+    date: "2023-01-01",
+    transitionDuration: 7500,
+    language: "en"
+  },
 
-      this.transitionInterval = setInterval(function () {
-        self.transitionStyles();
-      }, this.config.transitionDuration);
-    },
-  
-    getStyles: function () {
-      return ["MMM-CoupleDays.css"];
-    },
-  
-    getHeader: function () {
-      return "&hearts; " + this.config.name1 + " und " + this.config.name2 + " &hearts;";
-    },
-  
-    getDom: function () {
-      var wrapper = document.createElement("div");
-      wrapper.className = "couple-days-wrapper show"; 
-  
-      var title = document.createElement("div");
-      title.className = "small bright";
-      wrapper.appendChild(title);
-  
-      var count = document.createElement("div");
-      count.className = "medium bright";
-      count.innerHTML = this.getCountText();
-      wrapper.appendChild(count);
-  
-      return wrapper;
-    },
-  
-    transitionStyles: function () {
-      var self = this;
-  
-      var wrapper = document.querySelector(".couple-days-wrapper");
-      setTimeout(function () {
-        self.currentStyle = self.nextStyle;
-        self.nextStyle = (self.nextStyle % 5) + 1;
-        wrapper.querySelector(".medium").innerHTML = self.getCountText();
-      }, this.config.transitionDuration / 2);
-    },
-  
-    getCountText: function () {
-      var text = "";
-  
-      switch (this.currentStyle) {
-        case 1: // Nur Tage
-          text = this.numOfDays === 1 ? "1 Tag" : this.numOfDays + " Tage";
-          break;
-        case 2: // Wochen
-          text = Math.round(this.numOfDays / 7)  + " Wochen";
-          break;
-        case 3: // Monate
-            text = this.numOfMonths  + " Monate";
-            break;
-        case 4:
-          var daysText = (this.numOfDays % 30) === 1 ? "1 Tag" : (this.numOfDays % 30) + " Tage";
-          var weeksText = Math.floor((this.numOfDays % 30) / 7) === 1 ? "1 Woche" : Math.floor((this.numOfDays % 30) / 7) + " Wochen";
-          var monthsText = (this.numOfMonths % 12) === 1 ? "1 Monat" : (this.numOfMonths % 12) + " Monate";
-          var yearsText = this.numOfYears === 1 ? "1 Jahr" : this.numOfYears + " Jahre";
-          if (this.numOfYears < 1 && (this.numOfMonths % 12) < 12) {
-            if ((this.numOfMonths % 12) < 1) {
-              text = daysText;
-            } else if ((this.numOfDays % 30) < 7) {
-              text = monthsText;
-            } else {
-              text = monthsText + ", " + weeksText + " und " + daysText;
-            }
-          } else if (this.numOfYears === 1) {
-            text = yearsText + ", " + monthsText + ", " + weeksText + " und " + daysText;
-          } else {
-            text = yearsText + ", " + monthsText + ", " + weeksText + " und " + daysText;
-          }
-          break;
-        default:
-            var daysText = (this.numOfDays % 30) === 1 ? "1 Tag" : (this.numOfDays % 30) + " Tage";
-            var weeksText = Math.floor((this.numOfDays % 30) / 7) === 1 ? "1 Woche" : Math.floor((this.numOfDays % 30) / 7) + " Wochen";
-            var monthsText = (this.numOfMonths % 12) === 1 ? "1 Monat" : (this.numOfMonths % 12) + " Monate";
-            var yearsText = this.numOfYears === 1 ? "1 Jahr" : this.numOfYears + " Jahre";
-            if (this.numOfYears < 1 && (this.numOfMonths % 12) < 12) {
-              if ((this.numOfMonths % 12) < 1) {
-                text = daysText;
-              } else if ((this.numOfDays % 30) < 7) {
-                text = monthsText;
-              } else {
-                text = monthsText + ", " + weeksText + " und " + daysText;
-              }
-            } else if (this.numOfYears === 1) {
-              text = yearsText + ", " + monthsText + ", " + weeksText + " und " + daysText;
-            } else {
-              text = yearsText + ", " + monthsText + ", " + weeksText + " und " + daysText;
-            }
-      }
-  
-      return text;
+  start: function () {
+    this.currentIndex = 0;
+    this.views = [
+      { key: "days", label: this.translate("days") },
+      { key: "weeks", label: this.translate("weeks") },
+      { key: "months", label: this.translate("months") },
+      { key: "years", label: this.translate("years") },
+      { key: "total", label: this.translate("total") }
+    ];5
+    this.currentView = this.views[this.currentIndex];
+    this.startDate = moment(this.config.date);
+    this.endDate = moment();
+    this.headerWrapper = document.createElement("div");
+    this.headerWrapper.className = "couple-days-header";
+    this.wrapper = document.createElement("div");
+    this.wrapper.className = "couple-days-wrapper";
+    this.wrapper.appendChild(this.headerWrapper);
+    this.contentWrapper = document.createElement("div");
+    this.contentWrapper.className = "couple-days-content";
+    this.wrapper.appendChild(this.contentWrapper);
+    this.updateContent();
+    this.updateDom();
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.views.length;
+      this.currentView = this.views[this.currentIndex];
+      this.updateContent();
+    }, this.config.transitionDuration);
+  },
+
+  getStyles: function () {
+    return ["MMM-CoupleDays.css"];
+  },
+
+  getScripts: function () {
+    return ["moment.js"];
+  },
+
+  getTranslations: function () {
+    if (this.config.language === "de") {
+      return {
+        de: "translations/de.json"
+      };
+    } else {
+      return {
+        en: "translations/en.json"
+      };
     }
-  });
-  
+  },
+
+  getHeader: function () {
+    return this.config.name1 + " " + this.translate("and") + " " + this.config.name2;
+  },
+
+  getDuration: function (unit) {
+    return this.endDate.diff(this.startDate, unit);
+  },
+
+  formatDuration: function (duration, unit) {
+    var translationKey = unit + (duration === 1 ? "" : "_plural");
+    return duration + " " + this.translate(translationKey);
+  },
+
+  updateContent: function () {
+    this.contentWrapper.innerHTML = this.getFormattedDuration();
+  },
+
+  getFormattedDuration: function () {
+    switch (this.currentView.key) {
+      case "days":
+        return this.formatDuration(this.getDuration("days"), this.currentView.label);
+      case "weeks":
+        return this.formatDuration(this.getDuration("weeks"), this.currentView.label);
+      case "months":
+        return this.formatDuration(this.getDuration("months"), this.currentView.label);
+      case "years":
+        return this.formatYears();
+      case "total":
+        return this.formatTotal();
+    }
+  },
+
+  formatYears: function () {
+    var years = Math.floor(this.getDuration("years"));
+    var months = Math.floor(this.getDuration("months") % 12);
+    var days = Math.floor(this.getDuration("days") % 30);
+    if (years === 0) {
+      return this.formatDuration(months, this.translate("months")) + " " + this.formatDuration(days, this.translate("days"));
+    } else {
+      var formattedYears = this.formatDuration(years, this.currentView.label);
+      var formattedMonths = this.formatDuration(months, this.translate("months"));
+      var formattedDays = this.formatDuration(days, this.translate("days"));
+      if (years === 1) {
+        formattedYears = years + " " + this.translate("years");
+      } else {
+        formattedYears = years + " " + this.translate("years_plural");
+      }
+      return formattedYears
+    }
+  },
+
+  formatTotal: function () {
+    var years = Math.floor(this.getDuration("years"));
+    var months = Math.floor(this.getDuration("months") % 12);
+    var days = Math.floor(this.getDuration("days") % 30);
+    var formattedYears = this.formatDuration(years, this.translate("years"));
+    var formattedMonths = this.formatDuration(months, this.translate("months"));
+    var formattedDays = this.formatDuration(days, this.translate("days"));
+    var andTranslation = this.translate("and");
+      if (years === 0) {
+        return formattedMonths + " " + andTranslation + " " + formattedDays;
+      } else {
+        return formattedYears + " " + " " + formattedMonths + " " + andTranslation + " " + formattedDays;
+      }
+  },
+
+  getDom: function () {
+    return this.wrapper;
+  }
+});
