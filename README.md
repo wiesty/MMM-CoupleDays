@@ -1,7 +1,7 @@
 # MMM-CoupleDays  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wiesty/MMM-CoupleDays/raw/master/LICENSE)
 MagicMirror² Module that displays the number of days, weeks, months, and years since a specified date, serving as a romantic reminder for couples.
 
-![image](https://i.imgur.com/BeR7bQg.jpg)
+![image](https://i.imgur.com/cas14w7.jpg)
 
 
 ## Dependencies
