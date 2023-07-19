@@ -1,12 +1,12 @@
 {
-    "days": "Day",
-    "Day_plural": "Days",
-    "weeks": "Week",
-    "Week_plural": "Weeks",
-    "months": "Month",
-    "Month_plural": "Months",
-    "years": "Year",
-    "Year_plural": "Years",
+    "day": "Day",
+    "days": "Days",
+    "week": "Week",
+    "weeks": "Weeks",
+    "month": "Month",
+    "months": "Months",
+    "year": "Year",
+    "years": "Years",
     "total": "Total",
     "and": "and"
   }

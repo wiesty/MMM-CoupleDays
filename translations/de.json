@@ -1,13 +1,12 @@
 {
-    "days": "Tag",
-    "Tag_plural": "Tage",
-    "weeks": "Woche",
-    "Woche_plural": "Wochen",
-    "months": "Monat",
-    "Monat_plural": "Monate",
-    "years": "Jahr",
-    "Jahr_plural": "Jahre",
-    "total": "Insgesamt",
-    "and": "und"
-  }
-  
+  "day": "Tag",
+  "days": "Tage",
+  "week": "Woche",
+  "weeks": "Wochen",
+  "month": "Monat",
+  "months": "Monate",
+  "year": "Jahr",
+  "years": "Jahre",
+  "total": "Insgesamt",
+  "and": "und"
+}

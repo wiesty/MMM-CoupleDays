@@ -1,12 +1,12 @@
 {
-	"days": "Giorno",
-	"Day_plural": "Giorni",
-	"weeks": "Settimana",
-	"Week_plural": "Settimane",
-	"months": "Mese",
-	"Month_plural": "Mesi",
-	"years": "Anno",
-	"Year_plural": "Anni",
+	"day": "Giorno",
+	"days": "Giorni",
+	"week": "Settimana",
+	"weeks": "Settimane",
+	"month": "Mese",
+	"months": "Mesi",
+	"year": "Anno",
+	"years": "Anni",
 	"total": "Totale",
 	"and": "e"
 }

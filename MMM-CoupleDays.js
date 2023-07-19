@@ -45,16 +45,11 @@ Module.register("MMM-CoupleDays", {
   },
 
   getTranslations: function () {
-    if (this.config.language === "de") {
-      return {
-        de: "translations/de.json"
-      };
-    } else {
-      return {
-        en: "translations/en.json"
-      };
-    }
-  },
+    return {
+        [this.config.language]: `translations/${this.config.language}.json`
+    };
+},
+
 
   getHeader: function () {
     if (this.config.name2 === "") {
@@ -69,28 +64,30 @@ Module.register("MMM-CoupleDays", {
   },
 
   formatDuration: function (duration, unit) {
-    var translationKey = unit + (duration === 1 ? "" : "_plural");
+    var translationKey = duration === 1 ? unit.slice(0, -1) : unit; // Entfernt das letzte Zeichen für Singularformen
     return duration + " " + this.translate(translationKey);
   },
+
 
   updateContent: function () {
     this.contentWrapper.innerHTML = this.getFormattedDuration();
   },
-
+  
   getFormattedDuration: function () {
     switch (this.currentView.key) {
       case "days":
-        return this.formatDuration(this.getDuration("days"), this.currentView.label);
+        return this.formatDuration(this.getDuration("days"), "days");
       case "weeks":
-        return this.formatDuration(this.getDuration("weeks"), this.currentView.label);
+        return this.formatDuration(this.getDuration("weeks"), "weeks");
       case "months":
-        return this.formatDuration(this.getDuration("months"), this.currentView.label);
+        return this.formatDuration(this.getDuration("months"), "months");
       case "years":
         return this.formatYears();
       case "total":
         return this.formatTotal();
     }
-  },
+},
+
 
   formatYears: function () {
     var years = Math.floor(this.getDuration("years"));
