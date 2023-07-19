@@ -25,7 +25,7 @@ MagicMirror² Module that displays the number of days, weeks, months, and years 
 		name2: "Partner 2", // If name2 is "", it only shows the first name (for birthday trackers for exmaple) 
 		date: "2023-01-01", // year-month-day
 		transitionDuration: 5000, // in ms
-		language: "en" // de for german, en for englisch
+		language: "en" // de for german, en for englisch, it for Italian
 	}
 },
 ```
@@ -33,3 +33,12 @@ MagicMirror² Module that displays the number of days, weeks, months, and years 
 The module allows you to customize the names of the partners, the starting date, and the transition duration for smooth animations. It automatically calculates the elapsed time and updates the display every second.
 
 The module supports different styles of displaying the time, which transition in a loop with a configurable duration. The styles include showing only the number of days, the number of weeks, the number of months, or a combination of years, months, weeks, and days.
+
+## Contributions 
+Help with translating the module is always appreciated! 
+
+Credits:
+de - wiesty
+en - wiesty
+it - [IGOLz](https://github.com/IGOLz)
+? - maybe you :) ?
