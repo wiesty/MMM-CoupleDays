@@ -38,7 +38,7 @@ The module supports different styles of displaying the time, which transition in
 Help with translating the module is always appreciated! 
 
 Credits:
-de - wiesty
-en - wiesty
-it - [IGOLz](https://github.com/IGOLz)
-? - maybe you :) ?
+de - wiesty </br>
+en - wiesty</br>
+it - [IGOLz](https://github.com/IGOLz)</br>
+? - maybe you :) ?</br>
