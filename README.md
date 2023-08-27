@@ -41,4 +41,6 @@ Credits:
 de - wiesty </br>
 en - wiesty</br>
 it - [IGOLz](https://github.com/IGOLz)</br>
+fr - [torjc01](https://github.com/torjc01)</br>
+pt - [torjc01](https://github.com/torjc01)</br>
 ? - maybe you :) ?</br>
