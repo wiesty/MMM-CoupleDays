@@ -43,4 +43,5 @@ en - wiesty</br>
 it - [IGOLz](https://github.com/IGOLz)</br>
 fr - [torjc01](https://github.com/torjc01)</br>
 pt - [torjc01](https://github.com/torjc01)</br>
+zh-cn - [wedding0371](https://github.com/wedding0371)</br>
 ? - maybe you :) ?</br>
