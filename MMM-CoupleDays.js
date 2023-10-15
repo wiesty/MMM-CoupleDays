@@ -4,7 +4,8 @@ Module.register("MMM-CoupleDays", {
     name2: "Partner 2",
     date: "2023-01-01",
     transitionDuration: 7500,
-    language: "en"
+    language: "en",
+    textColor: "white"
   },
 
   start: function () {
@@ -23,6 +24,7 @@ Module.register("MMM-CoupleDays", {
     this.headerWrapper.className = "couple-days-header";
     this.wrapper = document.createElement("div");
     this.wrapper.className = "couple-days-wrapper";
+    this.wrapper.style.color = this.config.textColor;
     this.wrapper.appendChild(this.headerWrapper);
     this.contentWrapper = document.createElement("div");
     this.contentWrapper.className = "couple-days-content";
