@@ -45,5 +45,5 @@ it - [IGOLz](https://github.com/IGOLz)</br>
 fr - [torjc01](https://github.com/torjc01)</br>
 pt - [torjc01](https://github.com/torjc01)</br>
 zh-cn - [wedding0371](https://github.com/wedding0371)</br>
-nl - [Koesie77](https://gihub.com/Koesie77)</br>
+nl - [Koesie77](https://github.com/Koesie77)</br>
 ? - maybe you :) ?</br>
