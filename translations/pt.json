@@ -1,13 +1,12 @@
 {
-    "day": "Dia",
-    "days": "Dias",
-    "week": "Semana",
-    "weeks": "Semanas",
-    "month": "Mês",
-    "months": "Meses",
-    "year": "Ano",
-    "years": "Anos",
-    "total": "Total",
-    "and": "e"
-  }
-  
+  "day": "Dia",
+  "days": "Dias",
+  "week": "Semana",
+  "weeks": "Semanas",
+  "month": "Mês",
+  "months": "Meses",
+  "year": "Ano",
+  "years": "Anos",
+  "total": "Total",
+  "and": "e"
+}

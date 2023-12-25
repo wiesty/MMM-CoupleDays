@@ -8,15 +8,15 @@ Module.register("MMM-CoupleDays", {
     textColor: "white"
   },
 
-  start: function () {
+  start () {
     this.currentIndex = 0;
     this.views = [
-      { key: "days", label: this.translate("days") },
-      { key: "weeks", label: this.translate("weeks") },
-      { key: "months", label: this.translate("months") },
-      { key: "years", label: this.translate("years") },
-      { key: "total", label: this.translate("total") }
-    ];5
+      {key: "days", label: this.translate("days")},
+      {key: "weeks", label: this.translate("weeks")},
+      {key: "months", label: this.translate("months")},
+      {key: "years", label: this.translate("years")},
+      {key: "total", label: this.translate("total")}
+    ];
     this.currentView = this.views[this.currentIndex];
     this.startDate = moment(this.config.date);
     this.endDate = moment();
@@ -38,44 +38,45 @@ Module.register("MMM-CoupleDays", {
     }, this.config.transitionDuration);
   },
 
-  getStyles: function () {
+  getStyles () {
     return ["MMM-CoupleDays.css"];
   },
 
-  getScripts: function () {
+  getScripts () {
     return ["moment.js"];
   },
 
-  getTranslations: function () {
+  getTranslations () {
     return {
-        [this.config.language]: `translations/${this.config.language}.json`
+      [this.config.language]: `translations/${this.config.language}.json`
     };
-},
-
-
-  getHeader: function () {
-    if (this.config.name2 === "") {
-      return this.config.name1;
-    } else {
-    return this.config.name1 + " " + this.translate("and") + " " + this.config.name2;
-    }
   },
 
-  getDuration: function (unit) {
+
+  getHeader () {
+    if (this.config.name2 === "") {
+      return this.config.name1;
+    }
+    return `${this.config.name1} ${this.translate("and")} ${this.config.name2}`;
+  },
+
+  getDuration (unit) {
     return this.endDate.diff(this.startDate, unit);
   },
 
-  formatDuration: function (duration, unit) {
-    var translationKey = duration === 1 ? unit.slice(0, -1) : unit; // Entfernt das letzte Zeichen für Singularformen
-    return duration + " " + this.translate(translationKey);
+  formatDuration (duration, unit) {
+    const translationKey = duration === 1
+      ? unit.slice(0, -1)
+      : unit; // Entfernt das letzte Zeichen für Singularformen
+    return `${duration} ${this.translate(translationKey)}`;
   },
 
 
-  updateContent: function () {
+  updateContent () {
     this.contentWrapper.innerHTML = this.getFormattedDuration();
   },
-  
-  getFormattedDuration: function () {
+
+  getFormattedDuration () {
     switch (this.currentView.key) {
       case "days":
         return this.formatDuration(this.getDuration("days"), "days");
@@ -88,44 +89,40 @@ Module.register("MMM-CoupleDays", {
       case "total":
         return this.formatTotal();
     }
-},
+  },
 
 
-  formatYears: function () {
-    var years = Math.floor(this.getDuration("years"));
-    var months = Math.floor(this.getDuration("months") % 12);
-    var days = Math.floor(this.getDuration("days") % 30);
+  formatYears () {
+    const years = Math.floor(this.getDuration("years"));
+    const months = Math.floor(this.getDuration("months") % 12);
+    const days = Math.floor(this.getDuration("days") % 30);
     if (years === 0) {
-      return this.formatDuration(months, this.translate("months")) + " " + this.formatDuration(days, this.translate("days"));
-    } else {
-      var formattedYears = this.formatDuration(years, this.currentView.label);
-      var formattedMonths = this.formatDuration(months, this.translate("months"));
-      var formattedDays = this.formatDuration(days, this.translate("days"));
-      if (years === 1) {
-        formattedYears = years + " " + this.translate("years");
-      } else {
-        formattedYears = years + " " + this.translate("years_plural");
-      }
-      return formattedYears
+      return `${this.formatDuration(months, this.translate("months"))} ${this.formatDuration(days, this.translate("days"))}`;
     }
+    let formattedYears = this.formatDuration(years, this.currentView.label);
+    if (years === 1) {
+      formattedYears = `${years} ${this.translate("years")}`;
+    } else {
+      formattedYears = `${years} ${this.translate("years_plural")}`;
+    }
+    return formattedYears;
   },
 
-  formatTotal: function () {
-    var years = Math.floor(this.getDuration("years"));
-    var months = Math.floor(this.getDuration("months") % 12);
-    var days = Math.floor(this.getDuration("days") % 30);
-    var formattedYears = this.formatDuration(years, this.translate("years"));
-    var formattedMonths = this.formatDuration(months, this.translate("months"));
-    var formattedDays = this.formatDuration(days, this.translate("days"));
-    var andTranslation = this.translate("and");
-      if (years === 0) {
-        return formattedMonths + " " + andTranslation + " " + formattedDays;
-      } else {
-        return formattedYears + " " + " " + formattedMonths + " " + andTranslation + " " + formattedDays;
-      }
+  formatTotal () {
+    const years = Math.floor(this.getDuration("years"));
+    const months = Math.floor(this.getDuration("months") % 12);
+    const days = Math.floor(this.getDuration("days") % 30);
+    const formattedYears = this.formatDuration(years, this.translate("years"));
+    const formattedMonths = this.formatDuration(months, this.translate("months"));
+    const formattedDays = this.formatDuration(days, this.translate("days"));
+    const andTranslation = this.translate("and");
+    if (years === 0) {
+      return `${formattedMonths} ${andTranslation} ${formattedDays}`;
+    }
+    return `${formattedYears}  ${formattedMonths} ${andTranslation} ${formattedDays}`;
   },
 
-  getDom: function () {
+  getDom () {
     return this.wrapper;
   }
 });
