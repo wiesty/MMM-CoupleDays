@@ -1,12 +1,12 @@
 {
-	"day": "Giorno",
-	"days": "Giorni",
-	"week": "Settimana",
-	"weeks": "Settimane",
-	"month": "Mese",
-	"months": "Mesi",
-	"year": "Anno",
-	"years": "Anni",
-	"total": "Totale",
-	"and": "e"
+  "day": "Giorno",
+  "days": "Giorni",
+  "week": "Settimana",
+  "weeks": "Settimane",
+  "month": "Mese",
+  "months": "Mesi",
+  "year": "Anno",
+  "years": "Anni",
+  "total": "Totale",
+  "and": "e"
 }

@@ -1,0 +1,38 @@
+{
+  "name": "mmm-coupledays",
+  "version": "1.0.0",
+  "description": "MagicMirror² module that displays the number of days, weeks, months, and years since a specified date, serving as a romantic reminder for couples.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wiesty/MMM-CoupleDays"
+  },
+  "keywords": [
+    "magicmirror",
+    "reminder"
+  ],
+  "author": {
+    "name": "wiesty",
+    "url": "https://github.com/wiesty"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wiesty/MMM-CoupleDays/issues"
+  },
+  "homepage": "https://github.com/wiesty/MMM-CoupleDays#readme",
+  "dependencies": {
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@stylistic/eslint-plugin": "latest",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "latest",
+    "globals": "latest",
+    "prettier": "^3.1.1"
+  },
+  "scripts": {
+    "lint:check": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
+    "test": "npm run lint"
+  }
+}
