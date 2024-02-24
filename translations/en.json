@@ -1,13 +1,12 @@
 {
-    "day": "Day",
-    "days": "Days",
-    "week": "Week",
-    "weeks": "Weeks",
-    "month": "Month",
-    "months": "Months",
-    "year": "Year",
-    "years": "Years",
-    "total": "Total",
-    "and": "and"
-  }
-  
+  "day": "day",
+  "days": "days",
+  "week": "week",
+  "weeks": "weeks",
+  "month": "month",
+  "months": "months",
+  "year": "year",
+  "years": "years",
+  "total": "Total",
+  "and": "and"
+}
