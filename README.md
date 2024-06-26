@@ -55,6 +55,7 @@ Credits:
 - pt - [torjc01](https://github.com/torjc01)
 - zh-cn - [wedding0371](https://github.com/wedding0371)
 - nl - [Koesie77](https://github.com/Koesie77)
+- hr - [luaxv](https://github.com/ubeganov)
 - ? - maybe you :) ?
 
 ## Developer commands
