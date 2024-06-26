@@ -13,7 +13,7 @@ MagicMirror² Module that displays the number of days, weeks, months, and years 
 
    ```bash
    cd ~/MagicMirror/modules
-   git clone https://gitlab.com/wiesty/MMM-CoupleDays
+   git clone https://github.com/wiesty/MMM-CoupleDays
    cd MMM-CoupleDays
    npm install
    ```
