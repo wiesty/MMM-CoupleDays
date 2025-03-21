@@ -101,9 +101,9 @@ Module.register("MMM-CoupleDays", {
     }
     let formattedYears = this.formatDuration(years, this.currentView.label);
     if (years === 1) {
-      formattedYears = `${years} ${this.translate("years")}`;
+      formattedYears = `${years} ${this.translate("year")}`;
     } else {
-      formattedYears = `${years} ${this.translate("years_plural")}`;
+      formattedYears = `${years} ${this.translate("years")}`;
     }
     return formattedYears;
   },
