@@ -95,7 +95,11 @@ Module.register("MMM-CoupleDays", {
   formatYears () {
     const years = Math.floor(this.getDuration("years"));
     const months = Math.floor(this.getDuration("months") % 12);
-    const days = Math.floor(this.getDuration("days") % 30);
+
+    // Berechne die tatsächliche Anzahl der Tage korrekt
+    const totalDays = this.getDuration("days");
+    const yearMonthDays = (years * 365) + (months * 30);
+    const days = totalDays - yearMonthDays;
     if (years === 0) {
       return `${this.formatDuration(months, this.translate("months"))} ${this.formatDuration(days, this.translate("days"))}`;
     }
@@ -111,7 +115,11 @@ Module.register("MMM-CoupleDays", {
   formatTotal () {
     const years = Math.floor(this.getDuration("years"));
     const months = Math.floor(this.getDuration("months") % 12);
-    const days = Math.floor(this.getDuration("days") % 30);
+
+    // Berechne die tatsächliche Anzahl der Tage korrekt
+    const totalDays = this.getDuration("days");
+    const yearMonthDays = (years * 365) + (months * 30);
+    const days = totalDays - yearMonthDays;
     const formattedYears = this.formatDuration(years, this.translate("years"));
     const formattedMonths = this.formatDuration(months, this.translate("months"));
     const formattedDays = this.formatDuration(days, this.translate("days"));
