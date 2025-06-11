@@ -32,11 +32,11 @@ Module.register("MMM-CoupleDays", {
     this.updateContent();
     this.updateDom();
 
-    // Update endDate every second
+    // Update every hour
     setInterval(() => {
       this.endDate = moment();
       this.updateContent();
-    }, 1000);
+    }, 3600000);
 
     // Rotate through different views
     setInterval(() => {
