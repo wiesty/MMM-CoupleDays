@@ -31,6 +31,14 @@ Module.register("MMM-CoupleDays", {
     this.wrapper.appendChild(this.contentWrapper);
     this.updateContent();
     this.updateDom();
+
+    // Update endDate every second
+    setInterval(() => {
+      this.endDate = moment();
+      this.updateContent();
+    }, 1000);
+
+    // Rotate through different views
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.views.length;
       this.currentView = this.views[this.currentIndex];
@@ -67,7 +75,7 @@ Module.register("MMM-CoupleDays", {
   formatDuration (duration, unit) {
     const translationKey = duration === 1
       ? unit.slice(0, -1)
-      : unit; // Entfernt das letzte Zeichen für Singularformen
+      : unit;
     return `${duration} ${this.translate(translationKey)}`;
   },
 
@@ -98,18 +106,15 @@ Module.register("MMM-CoupleDays", {
 
     // Berechne die tatsächliche Anzahl der Tage korrekt
     const totalDays = this.getDuration("days");
-    const yearMonthDays = (years * 365) + (months * 30);
+    const yearMonthDays = years * 365 + months * 30;
     const days = totalDays - yearMonthDays;
     if (years === 0) {
       return `${this.formatDuration(months, this.translate("months"))} ${this.formatDuration(days, this.translate("days"))}`;
     }
-    let formattedYears = this.formatDuration(years, this.currentView.label);
     if (years === 1) {
-      formattedYears = `${years} ${this.translate("year")}`;
-    } else {
-      formattedYears = `${years} ${this.translate("years")}`;
+      return `${years} ${this.translate("year")}`;
     }
-    return formattedYears;
+    return `${years} ${this.translate("years")}`;
   },
 
   formatTotal () {
@@ -118,7 +123,7 @@ Module.register("MMM-CoupleDays", {
 
     // Berechne die tatsächliche Anzahl der Tage korrekt
     const totalDays = this.getDuration("days");
-    const yearMonthDays = (years * 365) + (months * 30);
+    const yearMonthDays = years * 365 + months * 30;
     const days = totalDays - yearMonthDays;
     const formattedYears = this.formatDuration(years, this.translate("years"));
     const formattedMonths = this.formatDuration(months, this.translate("months"));
@@ -134,3 +139,6 @@ Module.register("MMM-CoupleDays", {
     return this.wrapper;
   }
 });
+
+
+// Version 4.2

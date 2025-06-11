@@ -38,7 +38,7 @@ MagicMirror² Module that displays the number of days, weeks, months, and years 
 },
 ```
 
-The module allows you to customize the names of the partners, the starting date, and the transition duration for smooth animations. It automatically calculates the elapsed time and updates the display every second.
+The module allows you to customize the names of the partners, the starting date, and the transition duration for smooth animations. It automatically calculates the elapsed time and updates the display every second to ensure accurate time tracking.
 
 The module supports different styles of displaying the time, which transition in a loop with a configurable duration. The styles include showing only the number of days, the number of weeks, the number of months, or a combination of years, months, weeks, and days.
 
@@ -50,13 +50,18 @@ Credits:
 
 - de - wiesty
 - en - wiesty
-- it - [IGOLz](https://github.com/IGOLz)
+- es - wiesty
 - fr - [torjc01](https://github.com/torjc01)
-- pt - [torjc01](https://github.com/torjc01)
-- zh-cn - [wedding0371](https://github.com/wedding0371)
-- nl - [Koesie77](https://github.com/Koesie77)
 - hr - [luaxv](https://github.com/ubeganov)
-- ? - maybe you :) ?
+- it - [IGOLz](https://github.com/IGOLz)
+- nl - [Koesie77](https://github.com/Koesie77)
+- pl - wiesty
+- pt - [torjc01](https://github.com/torjc01)
+- ru - wiesty
+- sv - wiesty
+- tr - wiesty
+- zh-cn - [wedding0371](https://github.com/wedding0371)
+- ? - maybe you :)
 
 ## Developer commands
 
