@@ -72,6 +72,16 @@ Module.register("MMM-CoupleDays", {
     return this.endDate.diff(this.startDate, unit);
   },
 
+  getCalendarDuration () {
+    const totalMonths = this.getDuration("months");
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    // Count remaining days after the actual calendar months, including leap years.
+    const anniversary = this.startDate.clone().add(totalMonths, "months");
+    const days = this.endDate.diff(anniversary, "days");
+    return {years, months, days};
+  },
+
   formatDuration (duration, unit) {
     const translationKey = duration === 1
       ? unit.slice(0, -1)
@@ -101,15 +111,9 @@ Module.register("MMM-CoupleDays", {
 
 
   formatYears () {
-    const years = Math.floor(this.getDuration("years"));
-    const months = Math.floor(this.getDuration("months") % 12);
-
-    // Berechne die tatsächliche Anzahl der Tage korrekt
-    const totalDays = this.getDuration("days");
-    const yearMonthDays = years * 365 + months * 30;
-    const days = totalDays - yearMonthDays;
+    const {years, months, days} = this.getCalendarDuration();
     if (years === 0) {
-      return `${this.formatDuration(months, this.translate("months"))} ${this.formatDuration(days, this.translate("days"))}`;
+      return `${this.formatDuration(months, "months")} ${this.formatDuration(days, "days")}`;
     }
     if (years === 1) {
       return `${years} ${this.translate("year")}`;
@@ -118,16 +122,10 @@ Module.register("MMM-CoupleDays", {
   },
 
   formatTotal () {
-    const years = Math.floor(this.getDuration("years"));
-    const months = Math.floor(this.getDuration("months") % 12);
-
-    // Berechne die tatsächliche Anzahl der Tage korrekt
-    const totalDays = this.getDuration("days");
-    const yearMonthDays = years * 365 + months * 30;
-    const days = totalDays - yearMonthDays;
-    const formattedYears = this.formatDuration(years, this.translate("years"));
-    const formattedMonths = this.formatDuration(months, this.translate("months"));
-    const formattedDays = this.formatDuration(days, this.translate("days"));
+    const {years, months, days} = this.getCalendarDuration();
+    const formattedYears = this.formatDuration(years, "years");
+    const formattedMonths = this.formatDuration(months, "months");
+    const formattedDays = this.formatDuration(days, "days");
     const andTranslation = this.translate("and");
     if (years === 0) {
       return `${formattedMonths} ${andTranslation} ${formattedDays}`;
@@ -141,4 +139,4 @@ Module.register("MMM-CoupleDays", {
 });
 
 
-// Version 4.2
+// Version 4.2.1
